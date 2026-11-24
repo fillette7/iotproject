@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electronics Learning Hub</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    color: #222;
+}
+
+header {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    background: #092b50;
+    padding: 15px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #168aad;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #52b69a;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0002;
+    line-height: 1.7;
+}
+
+h2 {
+    color: #123c69;
+}
+
+footer {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Electronics Learning Hub</h1>
+    <p>Learn about Microcontrollers and Microprocessors</p>
+</header>
+
+<nav>
+    <button onclick="showTopic('microcontroller')">
+        Microcontroller
+    </button>
+
+    <button onclick="showTopic('microprocessor')">
+        Microprocessor
+    </button>
+
+    <button onclick="showTopic('esp32')">
+        ESP32
+    </button>
+
+    <button onclick="showTopic('esp8266')">
+        ESP8266
+    </button>
+
+    <button onclick="showTopic('arduino')">
+        Arduino Uno
+    </button>
+
+    <button onclick="showTopic('comparison')">
+        Comparison
+    </button>
+</nav>
+
+<div class="container">
+    <div class="card" id="content">
+
+        <h2>Welcome!</h2>
+
+        <p>
+        Select a button above to learn about
+        microcontrollers, microprocessors,
+        ESP32, ESP8266 and Arduino Uno.
+        </p>
+
+    </div>
+</div>
+
+<script>
+
+const topics = {
+
+microcontroller: `
+<h2>Microcontroller</h2>
+
+<p>A microcontroller is a small computer
+inside a single chip. It contains a CPU,
+memory and input/output peripherals.</p>
+
+<h3>Uses:</h3>
+<ul>
+<li>Automatic doors</li>
+<li>Washing machines</li>
+<li>Traffic light systems</li>
+<li>Robotics</li>
+<li>Temperature control</li>
+<li>Smart home systems</li>
+</ul>
+
+<h3>Examples:</h3>
+<p>8051, PIC, AVR and ARM Cortex-M.</p>
+`,
+
+microprocessor: `
+<h2>Microprocessor</h2>
+
+<p>A microprocessor is a programmable
+processing unit that performs calculations
+and executes computer instructions.</p>
+
+<h3>Uses:</h3>
+<ul>
+<li>Desktop computers</li>
+<li>Laptops</li>
+<li>Servers</li>
+<li>Gaming systems</li>
+<li>Workstations</li>
+</ul>
+
+<h3>Examples:</h3>
+<p>Intel Core i5, Intel Core i7 and AMD Ryzen.</p>
+`,
+
+esp32: `
+<h2>ESP32</h2>
+
+<p>ESP32 is a powerful microcontroller
+family with built-in wireless connectivity.</p>
+
+<h3>Features:</h3>
+<ul>
+<li>Wi-Fi connectivity</li>
+<li>Bluetooth support (varies by model)</li>
+<li>GPIO pins</li>
+<li>Analog and digital interfaces</li>
+<li>Low-power operating modes</li>
+</ul>
+
+<h3>Uses:</h3>
+<ul>
+<li>Internet of Things (IoT)</li>
+<li>Smart home automation</li>
+<li>Wireless robots</li>
+<li>Weather monitoring</li>
+<li>Remote control systems</li>
+</ul>
+`,
+
+esp8266: `
+<h2>ESP8266</h2>
+
+<p>ESP8266 is a low-cost microcontroller
+chip with built-in Wi-Fi.</p>
+
+<h3>Features:</h3>
+<ul>
+<li>Built-in Wi-Fi</li>
+<li>GPIO pins</li>
+<li>Low cost</li>
+<li>Low power modes</li>
+<li>Can connect devices to the internet</li>
+</ul>
+
+<h3>Uses:</h3>
+<ul>
+<li>Smart switches</li>
+<li>Wi-Fi controlled lights</li>
+<li>Internet-connected sensors</li>
+<li>Home automation</li>
+<li>IoT projects</li>
+</ul>
+`,
+
+arduino: `
+<h2>Arduino Uno</h2>
+
+<p>Arduino Uno is a development board
+based on the ATmega328P microcontroller.</p>
+
+<h3>Features:</h3>
+<ul>
+<li>14 digital input/output pins</li>
+<li>6 analog input pins</li>
+<li>USB connection</li>
+<li>Easy programming</li>
+<li>ATmega328P microcontroller</li>
+</ul>
+
+<h3>Uses:</h3>
+<ul>
+<li>Learning electronics</li>
+<li>LED control</li>
+<li>Robotics</li>
+<li>Automatic irrigation</li>
+<li>Sensor projects</li>
+</ul>
+`,
+
+comparison: `
+<h2>Comparison Table</h2>
+
+<table border="1" cellpadding="10"
+style="width:100%;border-collapse:collapse;">
+
+<tr>
+<th>Device</th>
+<th>Main purpose</th>
+<th>Connectivity</th>
+</tr>
+
+<tr>
+<td>Microcontroller</td>
+<td>Control specific devices</td>
+<td>Depends on model</td>
+</tr>
+
+<tr>
+<td>Microprocessor</td>
+<td>General computing</td>
+<td>Depends on system</td>
+</tr>
+
+<tr>
+<td>ESP32</td>
+<td>IoT and automation</td>
+<td>Wi-Fi and Bluetooth*</td>
+</tr>
+
+<tr>
+<td>ESP8266</td>
+<td>Wi-Fi IoT projects</td>
+<td>Wi-Fi</td>
+</tr>
+
+<tr>
+<td>Arduino Uno</td>
+<td>Electronics and robotics</td>
+<td>No built-in Wi-Fi</td>
+</tr>
+
+</table>
+
+<p>*Bluetooth availability depends on ESP32 model.</p>
+`
+};
+
+function showTopic(topic) {
+    document.getElementById("content").innerHTML =
+        topics[topic];
+}
+
+</script>
+
+<footer>
+    <p>Electronics Learning Hub | 2026</p>
+</footer>
+
+</body>
+</html>
